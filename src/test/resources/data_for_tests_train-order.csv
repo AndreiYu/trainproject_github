@@ -1,0 +1,8 @@
+run,test_name,data_type,is_valid,from,to,departure_date,id_number,carriage_number,place_number
+y,CheckingOrderPageTest,train_order,y,МИНСК,ГРОДНО,19.11.2017,,,
+y,All,train_order,y,МИНСК,ГРОДНО,19.11.2017,627Б,,
+y,All,train_order,y,МИНСК,БРЕСТ,19.11.2017,651Б,,
+y,All,train_order,y,МИНСК,ГОМЕЛЬ-ПАССАЖИРСКИЙ,20.11.2017,648Б,,
+y,All,train_order,y,МИНСК,МОСКВА,25.11.2017,002Б,,
+y,All,train_order,n,МИНСК,МИНСК,25.11.2017,012Б,,
+y,All,train_order,n,МИНСК,МОСКВА,20.11.2017,000Б,,

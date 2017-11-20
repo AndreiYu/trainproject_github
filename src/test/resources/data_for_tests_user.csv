@@ -1,0 +1,10 @@
+run,test_name,data_type,is_valid,login,password,last_name,first_name,id_number
+y,DataOnPassengersPageTest,user,y,,,FGHF,DFGD,МР1234567
+y,DataOnPassengersPageTest,user,y,,,GFHGF,GFHGF,МР1234567
+y,DataOnPassengersPageTest,user,y,,,HGJGH,FTHJTYJ,МР1231212
+y,DataOnPassengersPageTest,user,y,,,IVANOV,IVAN,КВ5534214
+y,DataOnPassengersPageTest,user,y,,,IVANOV,IVAN,МР1234534
+y,DataOnPassengersPageTest,user,y,,,SDFSD,DGFSD,МР1234567
+y,DataOnPassengersPageTest,user,y,,,АПВА,ВАПВА,МР2345678
+y,DataOnPassengersPageTest,user,y,,,ИВАН,АВАВА,КВ7778123
+y,All,user,y,userrwby,a1234567,IVANOV,IVAN,МР1234567

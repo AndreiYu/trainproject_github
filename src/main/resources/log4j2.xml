@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN"
+               packages="by.poezdrw.util.CustomLogger"> <!--the status attribute represents the level at which internal log4j events should be logged-->
+
+    <!--    Logger writes all messages to console (level INFO and above)
+        all messages to Rollingfile (level INFO and above) and Errors (and above)- in separate file
+        all messages to ReportNG (level INFO and above)-->
+
+    <Properties>
+        <Property name="GENERAL_LOG_DIR">logs/general</Property>
+        <Property name="ERROR_LOG_DIR">logs/error</Property>
+        <Property name="PATTERN_CONSOLE">%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %c{1}: %msg%n</Property>
+        <Property name="PATTERN_ROLLINGFILE">%d{dd-MM-yyyy HH:mm:ss} [%t] %-5level %logger{36} - %c{1}: %msg%n</Property>
+    </Properties>
+
+    <Appenders>
+        <!-- the standard-console-appender -->
+        <Console name="ConsoleAppender" target="SYSTEM_OUT">
+            <PatternLayout pattern="${PATTERN_CONSOLE}" charset="UTF-8"/>
+        </Console>
+
+        <!-- the appenders for file-->
+        <RollingFile name="RollingFileAppender-general"
+                     fileName="${GENERAL_LOG_DIR}/general.log" append="true" immediateFlush="false"
+                     filePattern="${GENERAL_LOG_DIR}/general_%d{dd-MM-yyyy}_%i.log">
+            <PatternLayout pattern="${PATTERN_ROLLINGFILE}"  charset="UTF-8"/>
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="5 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+
+        <RollingFile name="RollingFileAppender-error"
+                     fileName="${ERROR_LOG_DIR}/error.log" append="true" immediateFlush="false"
+                     filePattern="${ERROR_LOG_DIR}/error_%d{dd-MM-yyyy}_%i.log">
+            <PatternLayout pattern="${PATTERN_ROLLINGFILE}"  charset="UTF-8"/>
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="1 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+
+        <!-- custom-appender for ReportNG-->
+        <ReportLoggerAppender name="ReportLoggerAppender">
+            <PatternLayout pattern="${PATTERN_CONSOLE}"  charset="UTF-8"/>
+        </ReportLoggerAppender>
+        <!-- custom-appender for ReportPortal-->
+        <ReportPortalLog4j2Appender name="ReportPortalAppender">
+            <PatternLayout pattern="${PATTERN_CONSOLE}"  charset="UTF-8"/>
+        </ReportPortalLog4j2Appender>
+
+    </Appenders>
+
+    <Loggers>
+        <!--For writing screenshot to Report Portal and prevent other logs to log this binary data-->
+        <logger name="RP_binary"  level="ERROR" additivity="false">
+            <Appender-Ref ref="ReportPortalAppender"/>
+        </logger>
+        <!--For all other logging DATA-->
+        <Root level="DEBUG" additivity="true">
+            <Appender-Ref ref="ConsoleAppender" level="DEBUG"/>
+            <!-- RollingFile loggers -->
+            <Appender-Ref ref="RollingFileAppender-general" level="INFO"/>
+            <Appender-Ref ref="RollingFileAppender-error" level="ERROR"/>
+            <!-- Reporting loggers -->
+            <Appender-Ref ref="ReportLoggerAppender" level="INFO"/>
+            <Appender-Ref ref="ReportPortalAppender" level="INFO"/>
+        </Root>
+    </Loggers>
+
+</Configuration>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" verbose="1" group-by-instances="true">
+    <test name="all" group-by-instances="true">
+        <!--<classes>-->
+            <!--<class name="poezdrw.testNG.ConfirmationOrderPageTest"/>-->
+            <!--<class name="poezdrw.testNG.CheckingOrderPageTest"/>-->
+        <!--</classes>-->
+        <packages>
+           <package name=".*"/>
+        </packages>
+    </test>
+    <test name="testNG" group-by-instances="true">
+        <packages>
+            <package name="poezdrw.testNG.*"/>
+        </packages>
+    </test>
+    <test name="cucumber">
+        <classes>
+            <class name="poezdrw.cucumber.CucumberRunnerTestNGTest"/>
+        </classes>
+    </test>
+</suite>
+
